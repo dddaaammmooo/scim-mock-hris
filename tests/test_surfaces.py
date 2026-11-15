@@ -158,8 +158,11 @@ class TestApiAndApp:
         bundle = c.get("/api/admin/export").json()
         assert c.post("/api/admin/import", params={"replace": True}, json=bundle).json()["users"] == len(bundle["users"])
 
-    def test_integration_endpoints(self, client):
+    def test_integration_endpoints(self, client, monkeypatch):
         c = client
+        # SCIM calls made by API endpoints go through the in-process app, never the network
+        monkeypatch.setattr(services, "engine", lambda iid, http=None, draft=None:
+                            services.Runner(services.get_store(), services.hr(), c).engine(iid, draft))
         ref = c.get("/api/integrations/reference").json()
         assert "github-emu" in ref["templates"]
         assert c.post("/api/integrations/github-emu/reset-mappings").status_code == 200
