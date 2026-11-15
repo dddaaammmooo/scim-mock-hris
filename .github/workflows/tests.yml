@@ -13,8 +13,8 @@ jobs:
     name: Backend tests (100% coverage)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: pip
@@ -22,7 +22,7 @@ jobs:
       - run: pip install -r requirements-dev.txt
       # pytest.ini: -m "not ui", --cov-branch; .coveragerc: fail_under = 100. DynamoDB is mocked with moto.
       - run: python -m pytest
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: coverage-xml
@@ -33,8 +33,8 @@ jobs:
     name: UI tests (Playwright)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: pip
@@ -47,7 +47,7 @@ jobs:
     name: Docker Compose smoke test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Start MockHRIS and DynamoDB Local
         run: docker compose up -d --build
       - name: Wait for health, then check seeding, the GUI, a sync and verify against the built-in mock
