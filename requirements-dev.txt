@@ -1,0 +1,7 @@
+-r requirements.txt
+moto[dynamodb]==5.2.5
+pytest==9.2.0
+pytest-cov==7.1.0
+playwright==1.65.2
+pytest-playwright==0.10.0
+pytest-xdist==3.8.0

@@ -1,0 +1,43 @@
+name: mockhris
+
+services:
+  dynamodb:
+    image: amazon/dynamodb-local:3.3.1
+    command: ["-jar", "DynamoDBLocal.jar", "-sharedDb", "-dbPath", "/home/dynamodblocal/data"]
+    # The image runs as a non-root user that cannot write to a fresh named volume.
+    user: root
+    working_dir: /home/dynamodblocal
+    volumes:
+      - dynamodb-data:/home/dynamodblocal/data
+    ports:
+      - "127.0.0.1:8001:8000"   # reachable from the host for the CLI / stdio MCP server
+    restart: unless-stopped
+
+  app:
+    build: .
+    depends_on:
+      - dynamodb
+    environment:
+      DYNAMODB_ENDPOINT: http://dynamodb:8000
+      AWS_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: local
+      AWS_SECRET_ACCESS_KEY: local
+      AUTO_SEED: "true"
+      PUBLIC_BASE_URL: http://localhost:8000
+      # Optional:
+      # MOCKHRIS_API_KEY: change-me          # require X-API-Key / Bearer on /api and /mcp
+      # GITHUB_SCIM_TOKEN: ghp_...            # SCIM token for a real enterprise (overrides the GUI)
+      # MOCK_SCIM_TOKEN: mock-scim-token      # token accepted by the built-in mock GitHub target
+      # MCP_ALLOWED_HOSTS: mockhris.internal:*
+      MOCKHRIS_API_KEY: ${MOCKHRIS_API_KEY:-}
+      GITHUB_SCIM_TOKEN: ${GITHUB_SCIM_TOKEN:-}
+    # Reach other local containers published on the host, e.g. MockSCIMTarget on :8100
+    # (automatic on Docker Desktop; this line makes it work on Linux too).
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "127.0.0.1:8000:8000"
+    restart: unless-stopped
+
+volumes:
+  dynamodb-data:

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MockHRIS</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%234f46e5'/><text x='16' y='22' font-size='16' font-family='sans-serif' font-weight='700' text-anchor='middle' fill='white'>H</text></svg>">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="logo">H</span><div><strong>MockHRIS</strong><small>Halcyon Systems Group</small></div></div>
+      <nav id="nav">
+        <a href="#/dashboard" data-route="dashboard">Dashboard</a>
+        <a href="#/users" data-route="users">People</a>
+        <a href="#/groups" data-route="groups">Groups</a>
+        <a href="#/org" data-route="org">Org chart</a>
+        <div class="nav-section">Provisioning</div>
+        <a href="#/integrations" data-route="integrations">Integrations</a>
+        <a href="#/mock" data-route="mock">Mock GitHub target</a>
+        <a href="http://localhost:8100/ui/" target="_blank" rel="noopener">MockSCIMTarget ↗</a>
+        <div class="nav-section">System</div>
+        <a href="#/admin" data-route="admin">Admin &amp; API</a>
+        <a href="/docs" target="_blank" rel="noopener">API docs ↗</a>
+      </nav>
+    </aside>
+    <main id="main" tabindex="-1"></main>
+  </div>
+  <div id="toasts" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
