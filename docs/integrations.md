@@ -20,7 +20,7 @@ You can manage integrations in the GUI (**Integrations**), through the REST API
 | Template | Use it for | Required target attributes | Group member key |
 |---|---|---|---|
 | `github-emu` | GitHub Enterprise Managed Users (github.com or GHE.com) | `userName`, `externalId`, `active`, `displayName`, `emails[type eq "work"].value` | `displayName` |
-| `scim2` | Any RFC 7643/7644 service provider, e.g. [scim-target](https://github.com/dddaaammmooo/scim-target), Slack, Atlassian, Zoom | `userName` | `display` |
+| `scim2` | Any RFC 7643/7644 service provider, e.g. [scim-mock-target](https://github.com/dddaaammmooo/scim-mock-target), Slack, Atlassian, Zoom | `userName` | `display` |
 
 Two integrations are created on first start:
 - **`github-emu`** targets the built-in GitHub mock.

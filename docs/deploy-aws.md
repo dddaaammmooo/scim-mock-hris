@@ -112,7 +112,7 @@ If `/mcp` rejects requests with an invalid Host header error (typically HTTP 421
 
 ### Pointing MockHRIS at a deployed scim-target
 
-If you also deployed [scim-target](https://github.com/dddaaammmooo/scim-target) with its Terraform module:
+If you also deployed [scim-mock-target](https://github.com/dddaaammmooo/scim-mock-target) with its Terraform module:
 
 1. In the scim-target stack, run `terraform output scim_base_url` and `terraform output get_scim_token_command`.
 2. In MockHRIS, create or edit an integration and set:

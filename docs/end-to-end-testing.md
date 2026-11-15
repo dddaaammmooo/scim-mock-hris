@@ -7,9 +7,9 @@ identity lifecycle.
 
 ```bash
 git clone https://github.com/dddaaammmooo/scim-mock-hris.git
-git clone https://github.com/dddaaammmooo/scim-target.git
+git clone https://github.com/dddaaammmooo/scim-mock-target.git
 (cd scim-mock-hris && docker compose up -d --build)
-(cd scim-target   && docker compose up -d --build)
+(cd scim-mock-target && docker compose up -d --build)
 ```
 
 The `scim-target` integration in MockHRIS is preconfigured with:

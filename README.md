@@ -24,7 +24,7 @@ especially to **GitHub Enterprise Managed Users (EMU)**. It gives you:
   MCP server for AI assistants, and a CLI.
 - **DynamoDB Local storage,** running in a container.
 
-It pairs with **[scim-target](https://github.com/dddaaammmooo/scim-target)**, a standalone
+It pairs with **[scim-mock-target](https://github.com/dddaaammmooo/scim-mock-target)**, a standalone
 SCIM 2.0 server that receives what MockHRIS provisions, so you can prove the full lifecycle end
 to end.
 
@@ -37,9 +37,9 @@ to end.
 
 ```bash
 git clone https://github.com/dddaaammmooo/scim-mock-hris.git
-git clone https://github.com/dddaaammmooo/scim-target.git
+git clone https://github.com/dddaaammmooo/scim-mock-target.git
 (cd scim-mock-hris && docker compose up -d --build)   # http://localhost:8000
-(cd scim-target   && docker compose up -d --build)    # http://localhost:8100
+(cd scim-mock-target && docker compose up -d --build)    # http://localhost:8100
 ```
 
 1. Open http://localhost:8000. The company is generated on first start.
