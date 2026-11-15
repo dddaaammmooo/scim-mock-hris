@@ -34,7 +34,7 @@ def test_dashboard_and_navigation(ui):
 
 def test_lazy_content_fades_in_and_respects_reduced_motion(ui):
     ui.go("#/users")
-    first = ui.locator("#u-results > *").first
+    first = ui.locator("#u-results > .table-wrap")  # the loaded results, not the transient "Loading…" placeholder
     expect(first).to_be_visible()
     assert first.evaluate("e => getComputedStyle(e).animationName") == "fade-in"
     avatar = ui.locator("#u-results img.avatar").first
@@ -42,8 +42,8 @@ def test_lazy_content_fades_in_and_respects_reduced_motion(ui):
     ui.wait_for_function("e => getComputedStyle(e).opacity === '1'", arg=avatar.element_handle())  # fade completes
     ui.emulate_media(reduced_motion="reduce")
     ui.go("#/users")
-    expect(ui.locator("#u-results > *").first).to_be_visible()
-    assert ui.locator("#u-results > *").first.evaluate("e => getComputedStyle(e).animationName") == "none"
+    expect(ui.locator("#u-results > .table-wrap")).to_be_visible()
+    assert ui.locator("#u-results > .table-wrap").evaluate("e => getComputedStyle(e).animationName") == "none"
 
 
 # ----------------------------------------------------------------- people
